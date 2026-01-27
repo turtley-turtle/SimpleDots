@@ -160,5 +160,3 @@ Rectangle {
     }
     Component.onCompleted: password.forceActiveFocus()
 }
-
-//unfinished whatever whatever

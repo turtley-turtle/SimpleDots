@@ -1,0 +1,42 @@
+if [ -z "$1" ]; then
+    echo " Shutdown"
+    echo " Reboot"
+    echo "󰍃 Logout"
+    echo "󰒲 Hibernate" # my original idea was for the icon to be nf-md-teddy_bear
+    echo " Sleep"
+    echo " Lock"
+    exit 0
+fi
+
+case "$1" in
+    " Shutdown")
+        echo " Continue Shutdown" && echo " Cancel"
+        ;;
+    " Reboot")
+        echo " Continue Reboot" && echo " Cancel"
+        ;;
+    "󰍃 Logout")
+        echo "󰍃 Continue Logout" && echo " Cancel"
+        ;;
+    "󰒲 Hibernate")
+        systemctl hibernate > /dev/null & exit 0
+        ;;
+    " Sleep")
+        systemctl suspend > /dev/null & exit 0
+        ;;
+    " Lock")
+        hyprlock > /dev/null & exit 0
+        ;;
+    " Cancel")
+        exit 0
+        ;;
+    " Continue Reboot")
+        hyprshutdown --post-cmd "systemctl reboot" > /dev/null & exit 0
+        ;;
+    " Continue Shutdown")
+        hyprshutdown --post-cmd "systemctl poweroff" > /dev/null & exit 0
+        ;;
+    "󰍃 Continue Logout")
+        hyprshutdown --top-label "Logging out..." > /dev/null & exit 0
+        ;;
+esac

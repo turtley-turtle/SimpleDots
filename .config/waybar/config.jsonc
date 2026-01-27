@@ -1,0 +1,128 @@
+{
+    "modules-left": ["custom/arch", "hyprland/workspaces", "tray"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["clock", "pulseaudio", "network", "bluetooth", "battery", "custom/swaync"],
+    "position": "top",
+    "layer": "top",
+    "offset-x": 10,
+    "offset-y": 10,
+    "margin": 10,
+    "spacing": 10,
+
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a, %b %d %Y}",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": " {volume}%",
+        "format-muted": " Mute",
+        "format-bluetooth-muted": " Mute",
+        "scroll-step": 5,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "tooltip": false,
+        "format-icons": {
+            "default": ["", ""]
+        }
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": " {ifname} {ipaddr}/{cidr}",
+        "format-disconnected": "",
+        "tooltip": false,
+	"on-click": "inet-menu"
+    },
+
+    "bluetooth": {
+        "format-connected-battery": " {device_alias}",
+        "format-connected": " {device_alias}",
+        "format": "",
+	"on-click": "bluetooth-menu",
+        "tooltip": false
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "interval": 15,
+        "tooltip": false,
+        "format-icons": {
+            "default": ["", "", "", "", ""]
+        },
+        "states": {
+            "good": 70,
+            "warning": 35,
+            "critical": 15
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "rewrite": {
+            "^$": " Desktop",
+            "^rofi - .*":  "Rofi",
+            "^.*Mozilla Firefox.*": "Firefox",
+            "^.*@.*:.*": "Alacritty",
+            "^.* - VSCodium": "VSCodium",
+            "^Application Not Responding": " Application Not Responding",
+	    "^Support Hyprland": " Support Hyprland",
+	    "^Hyprland Updated": " Hyprland Updated"
+        },
+        "icon": true,
+        "tooltip": true,
+        "tooltip-format": "{title}",
+        "max-length": 60
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "all-outputs": true,
+        "format-icons": {
+            "1":  "●",
+            "2":  "●",
+            "3":  "●",
+            "4":  "●",
+            "5":  "●",
+            "6":  "●",
+            "7":  "●",
+            "8":  "●",
+            "9":  "●",
+            "10": "●"
+        },
+        "persistent-workspaces": {
+            "eDP-1": [1, 2, 3]
+        }
+    },
+
+    "custom/swaync": {
+        "tooltip": true,
+        "format": "{icon} ",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/arch": {
+        "format": " ",
+        "on-click": "mission-center",
+        "tooltip": false
+    }
+}

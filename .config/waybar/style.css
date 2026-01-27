@@ -1,0 +1,103 @@
+* {
+    padding: 1.25px;
+    margin-left: 1.25px;
+    margin-right: 1.25px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+/* Maybe a fix for the font size */
+
+
+/* Bar */
+
+#waybar {
+    background-color: rgb(40, 42, 54);
+    color: #f8f8f2;
+}
+
+/* Workspaces */
+
+#workspaces {
+    /*background-color: #6272A4;*/
+    border-radius: 10px;
+}
+
+#workspaces button {
+    color: rgba(248, 248, 242, 0.5);
+}
+
+#workspaces button.active {
+    color: #f8f8f2;
+}
+
+#workspaces button:hover {
+    color: rgba(248, 248, 242, 0.8);
+    background: none;
+    box-shadow: none;
+}
+
+#workspaces button:hover.active {
+    color: #f8f8f2;
+    background: none;
+    box-shadow: none;
+}
+
+#workspaces button.urgent {
+    color: #FFB86C;
+    box-shadow: none;
+}
+
+#workspaces button.urgent.active {
+    color: #f8f8f2;
+    box-shadow: none;
+}
+
+/* Arch module */
+
+#custom-arch {
+    color: #1793d1;
+    padding-right: 4px;
+}
+
+#custom-arch:hover {
+    color: #45a9da;
+}
+
+/* Apps module */
+
+#custom-apps {
+    color: #1793d1;
+    padding-right: 4px;
+}
+
+#custom-apps:hover {
+    background-color: #44475A;
+    color: #45a9da;
+}
+
+/* Taskbar module */
+
+#taskbar button.active {
+    background-color: #6272A4;
+    color: #f8f8f2;
+}
+
+#taskbar button.urgent {
+    background-color: #FFB86C;
+    color: #f8f8f2;
+}
+
+#taskbar button:hover {
+    background-color: #44475A;
+    color: #f8f8f2;
+    box-shadow: none;
+}
+
+/* Window module */
+
+#window {
+    background-color: #6272A4;
+    color: #f8f8f2;
+}

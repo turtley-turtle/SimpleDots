@@ -1,0 +1,88 @@
+* {
+    padding: 5px;
+    margin-left: 1.25px;
+    margin-right: 1.25px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+/* Bar */
+
+#waybar {
+    background-color: #282A36;
+    color: #f8f8f2;
+}
+
+/* Workspaces */
+
+#workspaces button {
+    color: #9ea8c3;
+    font-weight: bold;
+    padding-right: 0px;
+}
+
+#workspaces button.active {
+    color: #f8f8f2;
+}
+
+#workspaces button:hover {
+    color: #cbd0db;
+    background: none;
+    box-shadow: none;
+}
+
+#workspaces button:hover.active {
+    color: #f8f8f2;
+    background: none;
+    box-shadow: none;
+}
+
+#workspaces button.urgent {
+    color: #FFB86C;
+    box-shadow: none;
+}
+
+#workspaces button.urgent.active {
+    color: #f8f8f2;
+    box-shadow: none;
+}
+
+/* Arch module */
+
+#custom-arch {
+    color: #1793d1;
+}
+
+#custom-arch:hover {
+    color: #45a9da;
+}
+
+/* Apps module */
+
+#custom-apps {
+    color: #1793d1;
+    padding-right: 4px;
+}
+
+#custom-apps:hover {
+    color: #45a9da;
+}
+
+/* Taskbar module */
+
+#taskbar button.active {
+    background-color: #6272A4;
+    color: #f8f8f2;
+}
+
+#taskbar button.urgent {
+    background-color: #FFB86C;
+    color: #f8f8f2;
+}
+
+#taskbar button:hover {
+    background-color: #44475A;
+    color: #f8f8f2;
+    box-shadow: none;
+}

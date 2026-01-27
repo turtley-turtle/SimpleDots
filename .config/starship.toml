@@ -1,0 +1,29 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+scan_timeout = 100
+
+format = '''$directory$git_branch 
+$character
+'''
+
+[character]
+success_symbol = '[❯](bold cyan)'
+error_symbol = '[❯](bold red)'
+
+[git_branch]
+symbol = '[](bold red)'
+format = ' on $symbol $branch($remote_branch)'
+
+[python]
+symbol = '[](bold yellow)'
+format = ' via $symbol $virtualenv'
+detect_files = ['__init__.py', 'setup.py', 'requirements.txt', 'pyproject.toml', 'main.py']
+
+[directory]
+format = '''$read_only[$path](bold cyan)'''
+read_only = '[ ](bold yellow)'
+home_symbol = ' '
+
+[package]
+disabled = true

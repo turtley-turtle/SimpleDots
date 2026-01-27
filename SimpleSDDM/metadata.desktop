@@ -1,0 +1,10 @@
+[SddmGreeterTheme]
+Name=SimpleSDDM
+Description=A simple SDDM theme based on my Hyprlock theme, SimpleHyprlock
+License=MIT
+Version=0.1
+MainScript=Main.qml
+ConfigFile=config.conf
+Theme-Id=simplesddm
+Theme-API=2.2
+QtVersion=6s

@@ -1,0 +1,8 @@
+@theme "theme/launchpad/launchpad.rasi"
+
+configuration {
+    modi:               "drun,emoji,session:~/.config/rofi/modes/session";
+    display-drun:       " ";
+    display-emoji:      " ";
+    display-session:    " ";
+}

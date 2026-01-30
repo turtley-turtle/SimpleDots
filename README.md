@@ -1,6 +1,6 @@
 # SimpleDots
 ![Desktop](pictures/hyprland.png)
-Some very simple dotfiles
+Some very simple dotfiles<br>
 Includes configs for the Hypr ecosystem, Kitty, Rofi, Waybar and Fastfetch.
 
 ### Waybar

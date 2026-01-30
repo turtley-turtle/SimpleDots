@@ -62,7 +62,7 @@ mv /etc/sddm.conf /etc/sddm.conf.bak
 
 echo "Copying files"
 cp -r SimpleSDDM /usr/share/sddm/themes/SimpleSDDM
-sudo echo -e "[Theme]\nCurrent=SimpleSDDM" >> /etc/sddm.conf
+sudo echo -e "[Theme]\nCurrent=SimpleSDDM\n\n[General]\nGreeterEnvironment=QML2_IMPORT_PATH=/usr/lib/qt/qml\n\n[Greeter]\nCommand=/usr/bin/sddm-greeter" >> /etc/sddm.conf
 cp -r ./.config/hypr ~/.config/hypr
 cp -r ./.config/kitty ~/.config/kitty
 cp -r ./.config/rofi ~/.config/rofi
@@ -70,5 +70,7 @@ cp -r ./.config/starship.toml ~/.config/starship.toml
 cp -r ./.config/starship-tty.toml ~/.config/starship-tty.toml
 cp -r ./.config/waybar ~/.config/waybar
 cp -r ./.bashrc ~/.bashrc
+cp ./.local/bin ~/.local/bin
+cp ./wallpapers ~/Pictures/wallpapers
 
 echo "Done, just log out =D"

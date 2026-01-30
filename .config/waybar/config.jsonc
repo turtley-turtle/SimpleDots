@@ -122,7 +122,7 @@
 
     "custom/arch": {
         "format": " ",
-        "on-click": "mission-center",
+        "on-click": "rofi -config ~/.config/rofi/config-launchpad.rasi -show drun",
         "tooltip": false
     }
 }

@@ -1,14 +1,13 @@
 {
-    "modules-left": [],
-    "modules-center": ["custom/apps", "wlr/taskbar"],
+    "modules-left": ["custom/arch", "hyprland/workspaces", "group/tray"],
+    "modules-center": ["hyprland/window"],
     "modules-right": ["clock", "pulseaudio", "network", "bluetooth", "battery", "custom/swaync"],
-    "position": "bottom",
+    "position": "top",
     "layer": "top",
     "offset-x": 10,
     "offset-y": 10,
-    "margin": 10,
     "spacing": 10,
-    "style": "~/.config/waybar/style-taskbar.css",
+    "style": "style-modern.jsonc",
 
     "clock": {
         "format": " {:%H:%M}",
@@ -40,10 +39,10 @@
     },
 
     "bluetooth": {
-        "format-connected-battery": " {device-alias}",
-        "format-connected": " {device-alias}",
-        "format": " On",
-	"on-click": "rofi -show bluetooth",
+        "format-connected-battery": " {device_alias}",
+        "format-connected": " {device_alias}",
+        "format": "",
+	"on-click": "bluetooth-menu",
         "tooltip": false
     },
 
@@ -71,8 +70,8 @@
             "^.*@.*:.*": "Alacritty",
             "^.* - VSCodium": "VSCodium",
             "^Application Not Responding": " Application Not Responding",
-	    "^Support Hyprland": " Support Hyprland",
-	    "^Hyprland Updated": " Hyprland Updated"
+	        "^Support Hyprland": " Support Hyprland",
+	        "^Hyprland Updated": " Hyprland Updated"
         },
         "icon": true,
         "tooltip": true,
@@ -83,45 +82,62 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "all-outputs": true,
-        "active-only": true,
         "format-icons": {
-            "1":  "1",
-            "2":  "2",
-            "3":  "3",
-            "4":  "4",
-            "5":  "5",
-            "6":  "6",
-            "7":  "7",
-            "8":  "8",
-            "9":  "9",
-            "10": "0"
+            "1":  "●",
+            "2":  "●",
+            "3":  "●",
+            "4":  "●",
+            "5":  "●",
+            "6":  "●",
+            "7":  "●",
+            "8":  "●",
+            "9":  "●",
+            "10": "●"
+        },
+        "persistent-workspaces": {
+            "eDP-1": [1, 2, 3]
         }
     },
 
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "on-click": "activate",
-        "icon-size": 20
+    "group/tray": {
+        "orientation": "horizontal",
+        "drawer": {
+            "click-to-reveal": true
+        },
+        "modules": [
+            "custom/trayicon", "tray"
+        ]
+    },
+
+    "custom/trayicon": {
+        "format": "",
+        "tooltip": false
     },
 
     "custom/swaync": {
-        "format": " ",
-        "on-click": "swaync-client -R & swaync-client -rs && swaync-client -t",
-        "tooltip": false
+        "tooltip": true,
+        "format": "{icon} ",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
 
     "custom/arch": {
-        "format": "  ",
-        "on-click": "mission-center",
-        "tooltip": false
-    },
-
-    "custom/apps": {
-        "format": "{icon}",
-        "format-icons": {
-            "default": "  "
-        },
-        "on-click": "rofi -show drun",
+        "format": " ",
+        "on-click": "rofi -config ~/.config/rofi/config-launchpad.rasi -show drun",
         "tooltip": false
     }
 }

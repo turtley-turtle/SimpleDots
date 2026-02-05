@@ -1,5 +1,5 @@
 * {
-    padding: 5px;
+    padding: 1.25px;
     margin-left: 1.25px;
     margin-right: 1.25px;
     font-family: "JetBrainsMono Nerd Font";
@@ -7,19 +7,38 @@
     border-radius: 10px;
 }
 
+
 /* Bar */
 
-#waybar {
-    background-color: #282A36;
+window#waybar {
+    background-color: rgba(40, 42, 54, 0.5);
     color: #f8f8f2;
+    border-radius: 0px;
+}
+
+/* Sides */
+
+.modules-left {
+    background-color: #282a36;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.modules-right {
+    background-color: #282a36;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 /* Workspaces */
 
+#workspaces {
+    /*background-color: #6272A4;*/
+    border-radius: 10px;
+}
+
 #workspaces button {
-    color: #9ea8c3;
-    font-weight: bold;
-    padding-right: 0px;
+    color: rgba(248, 248, 242, 0.5);
 }
 
 #workspaces button.active {
@@ -27,7 +46,7 @@
 }
 
 #workspaces button:hover {
-    color: #cbd0db;
+    color: rgba(248, 248, 242, 0.8);
     background: none;
     box-shadow: none;
 }
@@ -52,6 +71,7 @@
 
 #custom-arch {
     color: #1793d1;
+    padding-right: 4px;
 }
 
 #custom-arch:hover {
@@ -66,6 +86,7 @@
 }
 
 #custom-apps:hover {
+    background-color: #44475A;
     color: #45a9da;
 }
 
@@ -85,4 +106,13 @@
     background-color: #44475A;
     color: #f8f8f2;
     box-shadow: none;
+}
+
+/* Window module */
+
+#window {
+    background-color: #282a36;
+    color: #f8f8f2;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }

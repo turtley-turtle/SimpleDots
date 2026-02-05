@@ -12,7 +12,7 @@
 
 /* Bar */
 
-#waybar {
+.background {
     background-color: rgb(40, 42, 54);
     color: #f8f8f2;
 }

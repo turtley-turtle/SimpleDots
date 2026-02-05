@@ -1,5 +1,5 @@
 {
-    "modules-left": ["custom/arch", "hyprland/workspaces", "tray"],
+    "modules-left": ["custom/arch", "hyprland/workspaces", "group/tray"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["clock", "pulseaudio", "network", "bluetooth", "battery", "custom/swaync"],
     "position": "top",
@@ -70,8 +70,8 @@
             "^.*@.*:.*": "Alacritty",
             "^.* - VSCodium": "VSCodium",
             "^Application Not Responding": " Application Not Responding",
-	    "^Support Hyprland": " Support Hyprland",
-	    "^Hyprland Updated": " Hyprland Updated"
+	        "^Support Hyprland": " Support Hyprland",
+	        "^Hyprland Updated": " Hyprland Updated"
         },
         "icon": true,
         "tooltip": true,
@@ -97,6 +97,21 @@
         "persistent-workspaces": {
             "eDP-1": [1, 2, 3]
         }
+    },
+
+    "group/tray": {
+        "orientation": "horizontal",
+        "drawer": {
+            "click-to-reveal": true
+        },
+        "modules": [
+            "custom/trayicon", "tray"
+        ]
+    },
+
+    "custom/trayicon": {
+        "format": "",
+        "tooltip": false
     },
 
     "custom/swaync": {

@@ -22,46 +22,47 @@ else
     exit 1
 fi
 
-if [[ "$NAME" == "Arch Linux" || "$NAME" == "EndeavourOS" || "$NAME" == "Manjaro" || "$NAME" == "CachyOS" ]]; then
+if [[ "$ID" == "arch" || "$ID" == "endeavouros" || "$ID" == "cachyos" ]]; then
     echo "Installing dependencies"
-    yay -S --noconfirm sddm kitty ttf-jetbrains-mono-nerd hyprland hyprlock hyprpaper hyprshot hyprtoolkit hypridle waybar rofi starship
+    yay -S sddm kitty ttf-jetbrains-mono-nerd hyprland hyprlock hyprpaper hyprshot hyprtoolkit hypridle waybar rofi starship
     echo "Error or not error, i do not know"
-elif [ "$NAME" == "Fedora" ]; then
+elif [ "$ID" == "fedora" ]; then
     echo "Idk how to install the dependencies on Fedora, support will be added later"
     exit 1
-elif [ "$NAME" == "Gentoo Linux" ]; then
+elif [ "$ID" == "gentoo" ]; then
     echo "WHY DO YOU USE GENTOO!??!?!?"
     exit 1
-elif [ "$NAME" == "openSUSE" ]; then
+elif [[ "$ID" == "opensuse" || "$ID" == "opensuse-tumbleweed" || "$ID" == "opensuse-leap" ]]; then
     echo "I never even touched openSUSE, i just know it's the chameleon OS or something"
     exit 1
-elif [ "$NAME" == "NixOS" ]; then
-    echo "I'll add support for this later"
+elif [ "$ID" == "nixos" ]; then
+    echo "I'll add support for this later... or never"
     exit 1
-elif [ "$NAME" == "Android" ]; then
+elif [ "$ID" == "android" ]; then
     echo "Bruh"
     exit 1
-elif [ "$NAME" == "Fuck Linux" ]; then # yes, fuck linux is a thing...
-    echo "Bro uses a Linux distro made by a Windows user"
+elif [ "$ID" == "debian" ]; then
+    echo "Debian... no support. Now... you're on version Sid right? Because if you are, don't ever apt autoremove."
     exit 1
 else
-    echo "$NAME? Never heard of it or do not care enough to make a custom message"
+    echo "$NAME? As a script, i do not know what that is. (beep boop AI sounds)"
     exit 1
 fi
 
 for file in ~/.config/*; do
-    if [[ "$file" == "hypr" || "$file" == "kitty" || "$file" == "waybar" || "$file" == "rofi" || "$file" == "starship.toml" || "$file" == "starship-tty.toml" ]]; then
+    if [[ "$file" == "hypr" || "$file" == "kitty" || "$file" == "waybar" || "$file" == "rofi" || "$file" == "starship.toml" || "$file" == "starship-tty.toml" || "$file" == "waypaper" || "$file" == "fastfetch" ]]; then
         echo "Backing up $file"
         mv "$file" "$file.bak"
     fi
 done
+
 echo "Backing up ~/.bashrc"
 mv ~/.bashrc ~/.bashrc.bak
 echo "Backing up /etc/sddm.conf"
 mv /etc/sddm.conf /etc/sddm.conf.bak
 
 echo "Copying files"
-cp -r SimpleSDDM /usr/share/sddm/themes/SimpleSDDM
+sudo cp -r SimpleSDDM /usr/share/sddm/themes/SimpleSDDM
 sudo echo -e "[Theme]\nCurrent=SimpleSDDM\n\n[General]\nGreeterEnvironment=QML2_IMPORT_PATH=/usr/lib/qt/qml\n\n[Greeter]\nCommand=/usr/bin/sddm-greeter" >> /etc/sddm.conf
 cp -r ./.config/hypr ~/.config/hypr
 cp -r ./.config/kitty ~/.config/kitty

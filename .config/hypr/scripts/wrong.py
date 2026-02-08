@@ -22,3 +22,7 @@ wrong = [
 # Pick a random text
 
 print(random.choice(wrong))
+
+# This was supposed to change the password error text in my Hyprlock but
+# Hyprlock doesn't support command outputs as error text.
+# I'll just it leave it here to whoever wants to use it.

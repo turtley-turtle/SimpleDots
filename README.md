@@ -12,5 +12,8 @@ Includes configs for the Hypr ecosystem, Kitty, Rofi, Waybar and Fastfetch.
 ### Rofi
 ![Rofi](pictures/rofi.png)
 
+### Fastfetch
+![Fastfetch](pictures/fastfetch.png)
+
 ### SDDM
 ![SDDM](pictures/sddm.png)

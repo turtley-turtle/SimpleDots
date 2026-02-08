@@ -1,13 +1,12 @@
 {
-    "modules-left": ["custom/arch", "hyprland/workspaces", "group/tray"],
-    "modules-center": ["hyprland/window"],
+    "modules-left": ["custom/arch", "group/tray"],
+    "modules-center": ["hyprland/workspaces"],
     "modules-right": ["clock", "pulseaudio", "network", "bluetooth", "battery", "custom/swaync"],
     "position": "top",
     "layer": "top",
-    "offset-x": 10,
-    "offset-y": 10,
+    "reload_style_on_change": true,
+    "height": 40,
     "spacing": 10,
-    "style": "style-modern.jsonc",
 
     "clock": {
         "format": " {:%H:%M}",
@@ -35,14 +34,14 @@
         "format-ethernet": " {ifname} {ipaddr}/{cidr}",
         "format-disconnected": "",
         "tooltip": false,
-	"on-click": "inet-menu"
+	    "on-click": "inet-menu"
     },
 
     "bluetooth": {
         "format-connected-battery": " {device_alias}",
         "format-connected": " {device_alias}",
         "format": "",
-	"on-click": "bluetooth-menu",
+	    "on-click": "bluetooth-menu",
         "tooltip": false
     },
 
@@ -83,16 +82,17 @@
         "format": "{icon}",
         "all-outputs": true,
         "format-icons": {
-            "1":  "●",
-            "2":  "●",
-            "3":  "●",
-            "4":  "●",
-            "5":  "●",
-            "6":  "●",
-            "7":  "●",
-            "8":  "●",
-            "9":  "●",
-            "10": "●"
+            "1":  "○",
+            "2":  "○",
+            "3":  "○",
+            "4":  "○",
+            "5":  "○",
+            "6":  "○",
+            "7":  "○",
+            "8":  "○",
+            "9":  "○",
+            "10": "○",
+            "active": "●"
         },
         "persistent-workspaces": {
             "eDP-1": [1, 2, 3]
@@ -110,7 +110,8 @@
     },
 
     "custom/trayicon": {
-        "format": "",
+        "format": "  ",
+        "format-alt": "  ",
         "tooltip": false
     },
 

@@ -7,25 +7,35 @@
     border-radius: 10px;
 }
 
-/* Maybe a fix for the font size */
-
-
 /* Bar */
 
-.background {
-    background-color: rgb(40, 42, 54);
+window#waybar {
+    background-color: rgba(40, 42, 54, 1);
     color: #f8f8f2;
+    border-radius: 10px;
+}
+
+/* Sides */
+
+.modules-left {
+    background-color: #282a36;
+}
+
+.modules-right {
+    background-color: #282a36;
 }
 
 /* Workspaces */
 
 #workspaces {
-    /*background-color: #6272A4;*/
+    background-color: #6272A4;
     border-radius: 10px;
 }
 
 #workspaces button {
     color: rgba(248, 248, 242, 0.5);
+    font-weight: 900;
+    text-shadow: 1px 0 currentColor, -1px 0 currentColor, 0 1px currentColor, 0 -1px currentColor;
 }
 
 #workspaces button.active {
@@ -59,6 +69,7 @@
 #custom-arch {
     color: #1793d1;
     padding-right: 4px;
+    padding-left: 15px;
 }
 
 #custom-arch:hover {
@@ -100,4 +111,10 @@
 #window {
     background-color: #6272A4;
     color: #f8f8f2;
+}
+
+/* System tray */
+
+#custom-trayicon:hover {
+    background-color: #44475A;
 }

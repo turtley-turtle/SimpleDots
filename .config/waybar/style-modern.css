@@ -17,7 +17,7 @@ window#waybar {
 }
 
 /* Sides */
-
+/*
 .modules-left {
     background-color: #282a36;
     margin-top: 4px;
@@ -29,16 +29,20 @@ window#waybar {
     margin-top: 4px;
     margin-bottom: 4px;
 }
+*/
+
+.modules-center {
+    background-color: #282a36;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 
 /* Workspaces */
 
-#workspaces {
-    /*background-color: #6272A4;*/
-    border-radius: 10px;
-}
-
 #workspaces button {
     color: rgba(248, 248, 242, 0.5);
+    font-weight: 900;
+    text-shadow: 1px 0 currentColor, -1px 0 currentColor, 0 1px currentColor, 0 -1px currentColor;
 }
 
 #workspaces button.active {
@@ -115,4 +119,10 @@ window#waybar {
     color: #f8f8f2;
     margin-top: 4px;
     margin-bottom: 4px;
+}
+
+/* System tray */
+
+#custom-trayicon:hover {
+    background-color: #44475A;
 }

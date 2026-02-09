@@ -21,8 +21,8 @@ format = ' via $symbol environment $virtualenv'
 detect_files = ['__init__.py', 'setup.py', 'requirements.txt', 'pyproject.toml', 'main.py']
 
 [directory]
-format = '''$read_only[$path](bold cyan)'''
-read_only = "[\\[ro\\]](bold yellow)"
+format = '''[$read_only](bold yellow)[$path](bold cyan)'''
+read_only = "[ro] "
 home_symbol = '~'
 
 [package]

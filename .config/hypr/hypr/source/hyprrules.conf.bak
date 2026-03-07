@@ -1,0 +1,19 @@
+# Ignore maximize requests from apps. You'll probably like this.
+windowrule = suppress_event maximize, match:class .*
+
+# Fix some dragging issues with XWayland
+#windowrule = nofocus,match:class ^$,match:title ^$,match:xwayland 1,match:floating 1,match:fullscreen 0,match:pinned 0
+
+# Transparent terminals
+windowrule = opacity 0.85 0.75 0.85, match:class kitty
+windowrule = opacity 0.85 0.75 0.85, match:class foot
+windowrule = opacity 0.85 0.75 0.85, match:class Alacritty
+
+# Normal pop-ups
+windowrulev2 = float, class:^xdg-desktop-portal-gtk$
+windowrulev2 = center, class:^xdg-desktop-portal-gtk$
+windowrulev2 = size 60% 60%, class:^xdg-desktop-portal-gtk$
+
+# Blurry layers
+layerrule = blur on, match:namespace rofi
+layerrule = blur on, match:namespace waybar

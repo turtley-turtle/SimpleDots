@@ -1,0 +1,71 @@
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Variables that start with --gnome- are added by me and are assigned
+ * to elements somewhere in this code. The rest of the variables are
+ * built-in in Firefox, so you need to add an !important if you wanna
+ * override them. */
+@media (prefers-color-scheme: dark) {	
+	:root {
+		/* Colors */
+		--gnome-standalone-color-oklab: max(l, 0.85) a b;
+		--gnome-destructive-bg: #FF5555;
+		--gnome-success-bg: #50FA7B;
+		--gnome-warning-bg: #FFB86C;
+		--gnome-error-bg: #FF5555;
+
+		--gnome-toolbar-star-button: #F1FA8C;
+
+		/* Window */
+		--gnome-window-background: #282A36;
+		--gnome-window-color: #F8F8F2;
+		--gnome-view-background: #282A36;
+		--gnome-sidebar-background: #44475A;
+		--gnome-secondary-sidebar-background: #282A36;
+
+		/* Card */
+		--gnome-card-background: rgba(255, 255, 255, 0.08);
+		--gnome-card-shade-color: rgba(0, 0, 6, 0.36);
+
+		/* Menu */
+		--gnome-menu-background: #282A36;
+
+		/* Header bar */
+		--gnome-headerbar-background: #282A36;
+		--gnome-headerbar-shade-color: rgba(0, 0, 0, 0.9);
+
+		/* Toolbars */
+		--gnome-toolbar-icon-fill: #F8F8F2;
+
+		/* Tabs */		
+		--gnome-tabbar-identity-color-green: #50FA7B;
+		--gnome-tabbar-identity-color-yellow: #F1FA8C;
+		--gnome-tabbar-identity-color-orange: #FFB86C;
+		--gnome-tabbar-identity-color-red: #FF5555;
+		--gnome-tabbar-identity-color-purple: #BD93F9;
+		
+		/* Miscellaneous */
+		--gnome-shade-color: rgba(0, 0, 6, 0.25);
+		
+		/* Text color for Firefox Logo in new private tab */
+		--gnome-private-wordmark: #F8F8F2;
+		/* New private tab background */
+		--gnome-private-in-content-page-background: #6272A4;
+		/* Private browsing info box */
+		--gnome-private-text-primary-color: #F8F8F2;
+		
+		/* Backdrop colors */
+		&:-moz-window-inactive {
+			--gnome-sidebar-background: #6272A4;
+			--gnome-secondary-sidebar-background: #6272A4;
+		}
+		
+		/* Private browsing colors */
+		&[privatebrowsingmode="temporary"] {
+			/* Headerbar */
+			--gnome-headerbar-background: #6272A4 !important;
+			&:-moz-window-inactive {
+				--gnome-headerbar-background: #BD93F9 !important;
+			}
+		}
+	}
+}

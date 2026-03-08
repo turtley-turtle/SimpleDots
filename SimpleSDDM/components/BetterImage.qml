@@ -8,11 +8,13 @@ Item {
     property int radius: 10
     property color borderColor: "#000000"
     property int border: 3
-    width: 64
-    height: 64
+    property bool smooth: true
+    property int fillMode: Image.PreserveAspectCrop
+    width: img.implicitWidth
+    height: img.implicitHeight
 
     Rectangle {
-        id: border
+        id: borderRect
         width: bimg.width + 2*bimg.border
         height: bimg.height + 2*bimg.border
         color: bimg.borderColor
@@ -20,10 +22,13 @@ Item {
         anchors.centerIn: parent
 
         Image {
+            id: img
             source: bimg.source
             width: bimg.width
             height: bimg.height
             anchors.centerIn: parent
+            smooth: bimg.smooth
+            fillMode: bimg.fillMode
             layer.enabled: true
             layer.effect: OpacityMask {
                 maskSource: Item {

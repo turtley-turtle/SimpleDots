@@ -12,9 +12,13 @@ Rectangle {
     LayoutMirroring.enabled: Qt.locale().textDirection == Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
-    property int sessionIndex: session.index
+    property int sessionIndex: sessionModel.lastIndex
     property int currentUser: 0
     property string currentUsername: userModel.lastUser
+    property int sessionNameRole: Qt.UserRole + 4
+    property int avatarRole: Qt.UserRole + 3
+    property int realNameRole: Qt.UserRole + 2
+    property int usernameRole: Qt.UserRole + 1
 
     Connections {
         target: sddm
@@ -70,42 +74,11 @@ Rectangle {
     }
     // debug end */
 
-    Column {
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 16
-        spacing: config.avatarSpacing
-        Repeater {
-            id: users
-            model: userModel
-            delegate: BetterImage {
-                width: config.avatarSize
-                height: config.avatarSize
-                radius: config.avatarRadius
-                borderColor: index === currentUser ? config.avatarActiveBorderColor : config.avatarBorderColor
-                source: model.icon ? model.icon : "/usr/share/sddm/faces/" + model.name + ".face.icon"
-
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        root.currentUser = index
-                        root.currentUsername = model.name
-                    }
-                }
-            }
-        }
-    }
-
-    Text {
-        id: clock
-        text: Qt.formatDateTime(new Date(), "HH:MM")
-        color: config.textColor
-        font.family: config.textFont
-        font.pixelSize: config.clockSize
-        font.bold: true
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -120
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: date.text = Qt.formatDateTime(new Date(), "ddd, MMM d yyyy")
     }
 
     Timer {
@@ -115,43 +88,146 @@ Rectangle {
         onTriggered: clock.text = Qt.formatDateTime(new Date(), "HH:mm")
     }
 
-    Text {
-        id: date
-        text: Qt.formatDateTime(new Date(), "ddd, MMM d yyyy")
-        color: config.textColor
-        font.family: config.textFont
-        font.pixelSize: config.dateSize
-        font.bold: true
-        anchors.centerIn: parent
-    }
-
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered: date.text = Qt.formatDateTime(new Date(), "ddd, MMM d yyyy")
-    }
     
-    TextField {
-        id: password
-        color: config.textColor
-        placeholderTextColor: config.textColor
-        font.family: config.textFont
-        font.pixelSize: 20
-        echoMode: TextInput.Password
-        placeholderText: "Password"
-        width: 270
-        height: 60
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: 100
-        anchors.horizontalCenterOffset: 0
-        background: Rectangle {
-            color: config.inputColor
-            radius: config.inputRadius
-            border.width: config.inputBorder
-            border.color: config.inputBorderColor
+
+    Column {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        spacing: 20
+        Row {
+            spacing: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Text {
+                text: "<"
+                font.family: config.textFont
+                font.pixelSize: avatar.height / 2
+                anchors.verticalCenter: parent.verticalCenter
+                color: config.textColor
+
+                MouseArea {
+                    cursorShape: Qt.PointingHandCursor
+                    anchors.fill: parent
+                    onClicked: {
+                        if (userModel.count > 0) {
+                            root.currentUser = (root.currentUser - 1 + userModel.count) % userModel.count
+                            root.currentUsername = userModel.data(userModel.index(root.currentUser, 0), root.usernameRole)
+                        }
+                    }
+                }
+            }
+
+            BetterImage {
+                id: avatar
+                width: config.avatarSize
+                height: config.avatarSize
+                radius: config.avatarRadius
+                borderColor: config.avatarBorderColor
+                border: config.avatarBorderSize
+                source: userModel.data(userModel.index(root.currentUser, 0), root.avatarRole).icon ? userModel.data(userModel.index(root.currentUser, 0), root.avatarRole) : "/usr/share/sddm/faces/" + userModel.data(userModel.index(root.currentUser, 0), root.usernameRole) + ".face.icon"
+            }
+
+            Text {
+                text: ">"
+                font.family: config.textFont
+                font.pixelSize: avatar.height / 2
+                anchors.verticalCenter: parent.verticalCenter
+                color: config.textColor
+
+                MouseArea {
+                    cursorShape: Qt.PointingHandCursor
+                    anchors.fill: parent
+                    onClicked: {
+                        if (userModel.count > 0) {
+                            root.currentUser = (root.currentUser + 1) % userModel.count
+                            root.currentUsername = userModel.data(userModel.index(root.currentUser, 0), usernameRole)
+                        }
+                    }
+                }
+            }
+        }
+
+        Text {
+            text: userModel.data(userModel.index(root.currentUser, 0), realNameRole) ? userModel.data(userModel.index(root.currentUser, 0), realNameRole) : root.currentUsername
+            color: config.textColor
+            font.pixelSize: config.nameSize
+            font.family: config.textFont
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        
+        TextField {
+            id: password
+            color: config.textColor
+            placeholderTextColor: config.textColor
+            font.family: config.textFont
+            font.pixelSize: 20
+            echoMode: TextInput.Password
+            placeholderText: "Password"
+            width: 270
+            height: 60
+            //anchors.verticalCenter: parent.verticalCenter
+            //anchors.right: parent.right
+            //anchors.rightMargin: 50
+            background: Rectangle {
+                color: config.inputColor
+                radius: config.inputRadius
+                border.width: config.inputBorder
+                border.color: config.inputBorderColor
+            }
         }
     }
+
+    Row {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        spacing: 20
+
+        Text {
+            text: "<"
+            font.family: config.textFont
+            font.pixelSize: config.sessionSize
+            color: config.textColor
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    if (sessionModel.count > 0) {
+                        sessionIndex = (sessionIndex - 1 + sessionModel.count) % sessionModel.count
+                        session.text = sessionModel.data(sessionModel.index(root.sessionIndex, 0), sessionNameRole)
+                    }
+                }
+            }
+        }
+
+        Text {
+            id: session
+            text: sessionModel.data(sessionModel.index(root.sessionIndex, 0), sessionNameRole)
+            font.family: config.textFont
+            font.pixelSize: config.sessionSize
+            color: config.textColor
+        }
+
+        Text {
+            text: ">"
+            font.family: config.textFont
+            font.pixelSize: config.sessionSize
+            color: config.textColor
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    if (sessionModel.count > 0) {
+                        sessionIndex = (sessionIndex + 1) % sessionModel.count
+                        session.text = sessionModel.data(sessionModel.index(root.sessionIndex, 0), sessionNameRole)
+                    }
+                }
+            }
+        }
+
+    }
+
     Keys.onReturnPressed: {
         password.background.border.color = config.loggingInColor
         sddm.login(
@@ -160,6 +236,7 @@ Rectangle {
             sessionIndex
         )
     }
+
     Component.onCompleted: {
         password.forceActiveFocus()
         if (userModel.count > 0) {
